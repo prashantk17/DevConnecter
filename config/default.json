@@ -1,0 +1,8 @@
+{
+  "mongoURI": "mongodb+srv://prashantkatoch56:prashant%401234@prashant17.dxjswvb.mongodb.net/?retryWrites=true&w=majority&appName=Prashant17",
+  "jwtSecret": "mysecrettoken",
+  "githubClientId":"Ov23liY6BcKTsTX7aCYf",
+  "githubSecret":"7ec838fb1e64bea70e47e858c17dbe3189adbd11"
+
+
+}
