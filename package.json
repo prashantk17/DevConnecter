@@ -1,7 +1,7 @@
 {
   "name": "devconnector",
   "version": "1.0.0",
-  "description": "",
+  "description": "Social Network for Developers",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,6 +9,7 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "compile": "tsc"
   },
   "keywords": [],
