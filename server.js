@@ -1,14 +1,34 @@
+require('dotenv').config();
 const express = require('express');
-const connectDB = require('./config/db');
+const mongoose = require('mongoose');
 const path = require('path');
 
 const app = express();
 
-// 🔍 Debug log: check runtime MONGO_URI
-console.log("🔍 MONGO_URI at runtime:", process.env.MONGO_URI);
+// MongoDB connection setup
+const mongoURI = process.env.MONGO_URI;
 
-// Connect Database
-connectDB();
+console.log('🔍 MONGO_URI at runtime:', mongoURI || 'NOT FOUND');
+
+if (!mongoURI) {
+  console.error('❌ MONGO_URI environment variable is not defined. Exiting...');
+  process.exit(1);
+}
+
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
+  console.log('✅ MongoDB connected successfully');
+})
+.catch(err => {
+  console.error('❌ MongoDB connection error:', err.message);
+  if (err.message.toLowerCase().includes('authentication failed')) {
+    console.error('❗ Check your MongoDB URI credentials (username/password)');
+  }
+  process.exit(1);
+});
 
 // Init Middleware
 app.use(express.json());
@@ -29,6 +49,6 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
