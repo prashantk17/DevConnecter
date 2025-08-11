@@ -1,14 +1,16 @@
 require('dotenv').config();
+console.log('--- Environment Variables ---');
+console.log('MONGO_URI:', process.env.MONGO_URI);
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('PORT:', process.env.PORT);
+console.log('-----------------------------');
+
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 
 const app = express();
 
-console.log('--- Environment Variables ---');
-console.log('MONGO_URI:', process.env.MONGO_URI);
-console.log('NODE_ENV:', process.env.NODE_ENV);
-console.log('PORT:', process.env.PORT);
 
 const mongoURI = process.env.MONGO_URI;
 
