@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-require('dotenv').config(); // Make sure this is at the top
+const config = require('config');
 
 const connectDB = async () => {
   try {
     console.log('🔧 connectDB() called');
-    const mongoURI = process.env.MONGO_URI; // ✅ Correct casing
+    const mongoURI = config.get('mongoURI');
     console.log('🔑 mongoURI:', mongoURI);
     await mongoose.connect(mongoURI);
     console.log('✅ MongoDB connected');
