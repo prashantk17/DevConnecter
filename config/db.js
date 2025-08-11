@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
-const config = require('config');
 
 const connectDB = async () => {
   try {
-    console.log('🔧 connectDB() called');
-    const mongoURI = config.get('mongoURI');
-    console.log('🔑 mongoURI:', mongoURI);
+    const mongoURI = 'mongodb+srv://prashantkatoch56:PjjaBmBNSX36z2R0@prashant17.dxjswvb.mongodb.net/test?retryWrites=true&w=majority&appName=Prashant17';
+    console.log("Using hardcoded URI");
     await mongoose.connect(mongoURI);
     console.log('✅ MongoDB connected');
   } catch (err) {
