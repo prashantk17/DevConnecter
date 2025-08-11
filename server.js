@@ -5,13 +5,15 @@ const path = require('path');
 
 const app = express();
 
-// MongoDB connection setup
+console.log('--- Environment Variables ---');
+console.log('MONGO_URI:', process.env.MONGO_URI);
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('PORT:', process.env.PORT);
+
 const mongoURI = process.env.MONGO_URI;
 
-console.log('🔍 MONGO_URI at runtime:', mongoURI || 'NOT FOUND');
-
 if (!mongoURI) {
-  console.error('❌ MONGO_URI environment variable is not defined. Exiting...');
+  console.error('❌ MONGO_URI environment variable is NOT defined. Exiting...');
   process.exit(1);
 }
 
@@ -23,17 +25,17 @@ mongoose.connect(mongoURI, {
   console.log('✅ MongoDB connected successfully');
 })
 .catch(err => {
-  console.error('❌ MongoDB connection error:', err.message);
-  if (err.message.toLowerCase().includes('authentication failed')) {
+  console.error('❌ MongoDB connection error:', err);
+  if (err.message && err.message.toLowerCase().includes('authentication failed')) {
     console.error('❗ Check your MongoDB URI credentials (username/password)');
   }
   process.exit(1);
 });
 
-// Init Middleware
+// Middleware
 app.use(express.json());
 
-// Define Routes
+// Routes (adjust these as needed)
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
@@ -41,7 +43,6 @@ app.use('/api/posts', require('./routes/api/posts'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
-  // Set static folder
   app.use(express.static('client/build'));
 
   app.get('*', (req, res) => {
@@ -50,5 +51,4 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const PORT = process.env.PORT || 8080;
-
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
