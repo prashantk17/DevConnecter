@@ -3,24 +3,30 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    _required: true,
+    get required() {
+      return this._required;
+    },
+    set required(value) {
+      this._required = value;
+    },
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   avatar: {
-    type: String // ✅ this holds the gravatar URL
+    type: String,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-module.exports = mongoose.model('user', UserSchema);
+module.exports = mongoose.models.user || mongoose.model('user', UserSchema);

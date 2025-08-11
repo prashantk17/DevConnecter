@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Font Awesome Icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css"
-    integrity="sha512-gMjQeDaELJ0ryCI+FtItusU9MkAifCZcGq789FrzkiM49D8lbDhoaUaIX4ASU187wofMNlgBJ4ckbrXM9sE6Pg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css"
+      integrity="sha512-gMjQeDaELJ0ryCI+FtItusU9MkAifCZcGq789FrzkiM49D8lbDhoaUaIX4ASU187wofMNlgBJ4ckbrXM9sE6Pg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-  <!-- Google Fonts: Raleway -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap"
-    rel="stylesheet"
-  />
+    <!-- Google Fonts: Raleway -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- External CSS -->
-  <link rel="stylesheet" href="css/style.min.css" />
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/style.min.css" />
 
-  <title>Welcome to the DevConnector</title>
-</head>
-<body>
-  <!-- Navbar -->
-  <nav class="navbar bg-dark">
-    <h1>
-      <a href="dashboard.html">
-        <i class="fas fa-code"></i> DevConnector
-      </a>
-    </h1>
-    <ul>
-      <li><a href="profiles.html">Developers</a></li>
-      <li><a href="posts.html">Posts</a></li>
-      <li><a href="dashboard.html">
-        <i class="fas fa-user"></i><span class="hide-sm">Dashboard</span></a></li>
-        <li><a href="login.html">
-        <i class="fas fa-sign-out-alt"></i><span class="hide-sm">logout</span></a></li>
-        
-    </ul>
-  </nav>
+    <title>Welcome to the DevConnector</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar bg-dark">
+      <h1>
+        <a href="dashboard.html"> <i class="fas fa-code"></i> DevConnector </a>
+      </h1>
+      <ul>
+        <li><a href="profiles.html">Developers</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li>
+          <a href="dashboard.html">
+            <i class="fas fa-user"></i><span class="hide-sm">Dashboard</span></a
+          >
+        </li>
+        <li>
+          <a href="login.html">
+            <i class="fas fa-sign-out-alt"></i
+            ><span class="hide-sm">logout</span></a
+          >
+        </li>
+      </ul>
+    </nav>
 
-  <section class="container">
-    <h1 class="large text-primary">
-      Create Your Profile
-    </h1>
-    <p class="lead">
-      <i class="fas fa-user"></i> Let's get some Information to make your profile stand out
-    </p>
-    <small>* = required fields</small>
-    <form class="form">
+    <section class="container">
+      <h1 class="large text-primary">Create Your Profile</h1>
+      <p class="lead">
+        <i class="fas fa-user"></i> Let's get some Information to make your
+        profile stand out
+      </p>
+      <small>* = required fields</small>
+      <form class="form">
         <div class="form-group">
           <select name="status">
             <option value="0">* Select Professional Status</option>
@@ -145,14 +148,12 @@
         <input type="submit" class="btn btn-primary my-1" />
         <a class="btn btn-light my-1" href="dashboard.html">Go Back</a>
       </form>
+    </section>
 
-  </section>
-
-
-  <!-- Main Content
+    <!-- Main Content
   <main class="container">
     <h2>Welcome to DevConnector</h2>
     <p>Connect with developers, share your profile, and collaborate on projects.</p>
   </main> -->
-</body>
+  </body>
 </html>
