@@ -64,9 +64,12 @@ router.post(
         },
       };
 
+      // Use env var in production, config in development
+      const jwtSecret = process.env.JWT_SECRET || config.get('jwtSecret');
+
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
+        jwtSecret,
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
