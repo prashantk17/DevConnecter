@@ -1,6 +1,5 @@
 {
   "mongoURI": "mongodb+srv://prashantkatoch56:PjjaBmBNSX36z2R0@prashant17.dxjswvb.mongodb.net/test?retryWrites=true&w=majority&appName=Prashant17",
-  "port": 8080,
   "jwtSecret": "dynocorpse2004",
   "githubClientId":"Ov23liY6BcKTsTX7aCYf",
   "githubSecret":"be1ae05d2394b45a98d3940ec29db2fa8087dd41"
