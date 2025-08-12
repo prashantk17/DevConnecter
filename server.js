@@ -1,8 +1,9 @@
 require('dotenv').config();
+
 console.log('--- Environment Variables ---');
-console.log('MONGO_URI:', process.env.MONGO_URI);
-console.log('NODE_ENV:', process.env.NODE_ENV);
-console.log('PORT:', process.env.PORT);
+console.log('MONGO_URI:', process.env.MONGO_URI || '❌ Not set');
+console.log('NODE_ENV:', process.env.NODE_ENV || 'development');
+console.log('PORT:', process.env.PORT || '5000');
 console.log('-----------------------------');
 
 const express = require('express');
@@ -11,13 +12,15 @@ const path = require('path');
 
 const app = express();
 
-
 const mongoURI = process.env.MONGO_URI;
 
 if (!mongoURI) {
-  console.error('❌ MONGO_URI environment variable is NOT defined. Exiting...');
+  console.error('❌ MONGO_URI environment variable is NOT defined.');
+  console.error('💡 Make sure it is set in Railway under Variables.');
   process.exit(1);
 }
+
+console.log(`🔍 Attempting MongoDB connection to: ${mongoURI}`);
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
@@ -27,9 +30,10 @@ mongoose.connect(mongoURI, {
   console.log('✅ MongoDB connected successfully');
 })
 .catch(err => {
-  console.error('❌ MongoDB connection error:', err);
+  console.error('❌ MongoDB connection error:', err.message);
+  console.error(`🔗 Tried connecting to: ${mongoURI}`);
   if (err.message && err.message.toLowerCase().includes('authentication failed')) {
-    console.error('❗ Check your MongoDB URI credentials (username/password)');
+    console.error('❗ Check your MongoDB username/password in the URI.');
   }
   process.exit(1);
 });
@@ -37,7 +41,7 @@ mongoose.connect(mongoURI, {
 // Middleware
 app.use(express.json());
 
-// Routes (adjust these as needed)
+// Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
@@ -52,6 +56,5 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const PORT = process.env.PORT || 5000
-;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`🚀 Server started on port ${PORT}`));
