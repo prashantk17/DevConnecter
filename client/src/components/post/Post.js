@@ -12,34 +12,25 @@ const Post = ({ getPost, post: { post, loading, error } }) => {
   const { id } = useParams();
 
   useEffect(() => {
-    console.log("🔄 Fetching post with ID:", id);
     getPost(id);
   }, [getPost, id]);
 
-  if (loading || post === null) {
-    return <Spinner />;
-  }
+  if (loading || !post) return <Spinner />;
 
   return (
     <Fragment>
-      <Link to="/posts" className="btn">
-        Back to Posts
-      </Link>
+      <Link to="/posts" className="btn">Back to Posts</Link>
 
       {/* Main post */}
       <PostItem post={post} showActions={false} />
 
-      {/* Single comment form to add new comment */}
+      {/* Add Comment */}
       <CommentForm postId={post._id} />
 
-      {/* List of existing comments */}
+      {/* Comments list */}
       <div className="comments">
-        {post.comments.map((comment) => (
-          <CommentItem
-            key={comment._id}
-            comment={comment}
-            postId={post._id}
-          />
+        {(Array.isArray(post.comments) ? post.comments : []).map((comment) => (
+          <CommentItem key={comment._id} comment={comment} postId={post._id} />
         ))}
       </div>
     </Fragment>

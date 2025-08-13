@@ -22,6 +22,7 @@ import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
+import NotFound from "./components/layout/NotFound";
 import PrivateRoute from "./components/routing/PrivateRoute";
 
 //Redux
@@ -41,8 +42,10 @@ const AppLayout = () => {
   const isLanding = location.pathname === "/";
 
   useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
+    if (localStorage.token) {
+      store.dispatch(loadUser());
+    }
+  }, [localStorage.token]);
 
   return (
     <Fragment>
@@ -75,6 +78,9 @@ const AppLayout = () => {
               <Route path="/posts" element={<Posts />} />
               <Route path="/posts/:id" element={<Post />} />
             </Route>
+
+            {/* Catch all routes */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       )}
