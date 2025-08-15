@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -40,6 +40,16 @@ if (localStorage.token) {
 const AppLayout = () => {
   const location = useLocation();
   const isLanding = location.pathname === "/";
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     if (localStorage.token) {
@@ -49,7 +59,7 @@ const AppLayout = () => {
 
   return (
     <Fragment>
-      <Navbar />
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
 
       {/* Alert sits between navbar and content */}
       <div className="alert-container">

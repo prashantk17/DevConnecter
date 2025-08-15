@@ -1,26 +1,30 @@
+// middleware/auth.js
 const jwt = require('jsonwebtoken');
 
 module.exports = function (req, res, next) {
-  // Get token from header
-  const token = req.header('x-auth-token');
+  // 1️⃣ Try to get token from custom header or Authorization
+  let token =
+    req.header('x-auth-token') ||
+    (req.header('Authorization') && req.header('Authorization').split(' ')[1]);
 
-  // Check if no token
+  // 2️⃣ If no token found
   if (!token) {
     return res.status(401).json({ msg: 'No token, authorization denied' });
   }
 
+  // 3️⃣ Ensure JWT_SECRET is set
+  if (!process.env.JWT_SECRET) {
+    console.error('❌ JWT_SECRET environment variable is not set.');
+    return res.status(500).json({ msg: 'Server configuration error: JWT_SECRET not set' });
+  }
+
+  // 4️⃣ Verify token
   try {
-    // Verify token using env var
-    jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
-      if (error) {
-        return res.status(401).json({ msg: 'Token is not valid' });
-      } else {
-        req.user = decoded.user;
-        next();
-      }
-    });
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded.user; // Attach decoded user payload
+    next();
   } catch (err) {
-    console.error('❌ Something went wrong with auth middleware:', err.message);
-    res.status(500).json({ msg: 'Server Error' });
+    console.error('❌ Token verification failed:', err.message);
+    return res.status(401).json({ msg: 'Token is not valid' });
   }
 };

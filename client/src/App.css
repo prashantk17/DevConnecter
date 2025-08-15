@@ -14,7 +14,7 @@
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
@@ -65,8 +65,8 @@ img {
 }
 
 .lead {
-  font-family: 'Montserrat';
-  font-weight: 500;
+  font-family: "Raleway";
+  font-weight: 600;
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
 }
@@ -297,10 +297,10 @@ body.with-alert .container {
   color: #888;
 }
 
-.form input[type='text'],
-.form input[type='email'],
-.form input[type='password'],
-.form input[type='date'],
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="date"],
 .form select {
   display: block;
   width: 100%;
@@ -310,14 +310,14 @@ body.with-alert .container {
 }
 
 .form textarea {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   display: block;
   width: 100%;
   padding: 0.4rem;
   font-size: 1.1rem;
   border: 1px solid #ccc;
 }
-.form input[type='submit'],
+.form input[type="submit"],
 button {
   font: inherit;
 }
@@ -398,7 +398,7 @@ table th,
 /* Landing Page */
 .landing {
   position: relative;
-  background: url('./img/img2.jpg') no-repeat center center/cover;
+  background: url("./img/img2.jpg") no-repeat center center/cover;
   height: 100vh;
 }
 
@@ -429,10 +429,10 @@ table th,
 .profile-grid {
   display: grid;
   grid-template-areas:
-    'top top'
-    'about about'
-    'exp edu'
-    'github github';
+    "top top"
+    "about about"
+    "exp edu"
+    "github github";
   grid-gap: 1rem;
 }
 
@@ -611,11 +611,11 @@ table th,
 
   .profile-grid {
     grid-template-areas:
-      'top'
-      'about'
-      'exp'
-      'edu'
-      'github';
+      "top"
+      "about"
+      "exp"
+      "edu"
+      "github";
   }
 
   .profile-about .skills {
@@ -782,4 +782,3 @@ table th,
   height: 60px;
   object-fit: cover;
 }
-

@@ -1,0 +1,44 @@
+.create-post-bar {
+  background: #fff;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.create-post-plus {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  color: #555;
+  padding: 10px;
+  border-radius: 50px; /* circular ends */
+  border: 1px solid #ccc;
+  width: fit-content;
+  transition: background 0.2s;
+}
+
+.create-post-plus:hover {
+  background: #f0f0f0;
+}
+
+.create-post-plus span {
+  display: inline-block;
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.create-post-bar textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  resize: none;
+  margin-bottom: 10px;
+}
+
+.post-actions {
+  display: flex;
+  gap: 10px;
+}
