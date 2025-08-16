@@ -53,9 +53,10 @@ const AppLayout = () => {
 
   useEffect(() => {
     if (localStorage.token) {
+      setAuthToken(localStorage.token);
       store.dispatch(loadUser());
     }
-  }, [localStorage.token]);
+  }, []);
 
   return (
     <Fragment>
