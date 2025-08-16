@@ -22,6 +22,8 @@ module.exports = function (req, res, next) {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded.user; // Attach decoded user payload
+    console.log("🔑 Decoded JWT:", decoded);
+
     next();
   } catch (err) {
     console.error('❌ Token verification failed:', err.message);
